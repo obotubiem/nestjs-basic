@@ -1,11 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Put, Query, UseGuards } from '@nestjs/common/decorators';
 import {
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiTags,
-} from '@nestjs/swagger/dist';
+} from '@nestjs/swagger';
 import { User } from '@prisma/client';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { JwtGuard } from 'src/guard/jwt.guard';
@@ -15,9 +16,10 @@ import { FilterBookDto } from './dto/filter-book.dto';
 import { FilterPaginatedBookDto } from './dto/filter-paginated-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 
-@Controller('book')
-@UseGuards(JwtGuard)
 @ApiTags('book')
+@UseGuards(JwtGuard)
+@ApiBearerAuth()
+@Controller('book')
 export class BookController {
   constructor(private bookService: BookService) {}
 

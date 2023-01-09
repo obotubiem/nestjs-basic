@@ -10,6 +10,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -21,8 +22,9 @@ import { FilterUserDto } from './dto/filter-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 
-@Controller('user')
 @ApiTags('user')
+@ApiBearerAuth()
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

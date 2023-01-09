@@ -3,6 +3,7 @@ import {
   Body,
   Param,
 } from '@nestjs/common/decorators/http/route-params.decorator';
+import { ApiTags } from '@nestjs/swagger';
 import { User } from '@prisma/client';
 import { JwtGuard } from 'src/guard/jwt.guard';
 import { AuthService } from './auth.service';
@@ -11,6 +12,7 @@ import { RefreshAccessTokenDto } from './dto/refresh-access-token.dto';
 import { GetUser } from './get-user.decorator';
 import { LoginResponse } from './interfaces/login.interface';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
